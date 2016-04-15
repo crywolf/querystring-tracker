@@ -11,7 +11,10 @@ const all = {
   root: path.normalize(`${__dirname}/../..`),
 
   // Server port
-  port: process.env.PORT || 5000
+  port: process.env.PORT || 5000,
+
+  // File to store parsed querystrings
+  trackerLogFile: path.join(path.normalize(`${__dirname}/../..`), 'log/trackerLog.json')
 };
 
 let environmentConfig;
