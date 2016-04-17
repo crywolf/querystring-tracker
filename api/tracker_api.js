@@ -6,22 +6,17 @@ const tracker = require('../models/tracker');
 
 class TrackerApi extends ApiController {
 
-  constructor () {
-    super();
-    this.tracker = tracker;
-    this.tracker.init();
-  }
-
   /**
    * @param {ctx} object Koa context
    * @returns {promise}
    */
   track (ctx) {
-    ctx.body = `Hello World at ${new Date()}`;
-    ctx.body += ` | querystring: ${JSON.stringify(qs.parse(ctx.querystring))}`;
+    ctx.body = `Request at ${new Date()}`;
+    ctx.body += '\n----------------------\n';
+    ctx.body += `querystring: ${JSON.stringify(qs.parse(ctx.querystring))}`;
 
     const parsedQueryString = qs.parse(ctx.querystring);
-    return this.tracker.track(parsedQueryString);
+    return tracker.track(parsedQueryString);
   }
 }
 

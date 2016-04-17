@@ -1,7 +1,7 @@
 'use strict';
 
 const Q = require('q');
-const Redis = require('ioredis');
+const redis = require('../redis');
 const log = require('../log').module('Tracker');
 
 class Tracker {
@@ -11,6 +11,7 @@ class Tracker {
    */
   constructor (stream) {
     this._stream = stream;
+    this._redis = redis.getClient();
   }
 
   /**
@@ -23,13 +24,11 @@ class Tracker {
     this._stream.write(JSON.stringify(parsedQueryString));
     this._stream.write(',');
 
-    const redis = new Redis();
-
     let result;
     if (query.count) {
       const count = parseInt(query.count, 10);
-      result = redis.incrby('count', count).catch(err => {
-        log.info(err, 'Error incrementing value in Redis');
+      result = this._redis.incrby('count', count).catch(err => {
+        log.warn(err, 'Error incrementing value in Redis');
       });
     } else {
       result = new Q();
