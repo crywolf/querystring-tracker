@@ -20,6 +20,6 @@ module.exports = {
   },
 
   logger: {
-    consoleLevel: 'crit'
+    consoleLevel: 'error'
   }
 };
