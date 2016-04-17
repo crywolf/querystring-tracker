@@ -7,7 +7,7 @@ const log = require('../log').module('Tracker');
 class Tracker {
 
   /**
-   * @param {stream} fs.writeStream
+   * @param {stream} writeStream
    */
   constructor (stream) {
     this._stream = stream;

@@ -17,9 +17,15 @@ const all = {
   trackerLogFile: path.join(path.normalize(`${__dirname}/../../..`), 'log/trackerLog.json'),
 
   redis: {
-    port: 6379,          // Redis port
-    host: '127.0.0.1',   // Redis host
-    db: 0
+    options: {
+      port: 6379,
+      host: '127.0.0.1',
+      db: 0
+    }
+  },
+
+  logger: {
+    consoleLevel: 'info'
   }
 };
 

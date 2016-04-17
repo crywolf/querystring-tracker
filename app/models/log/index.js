@@ -1,6 +1,8 @@
 'use strict';
 
 const winston = require('winston');
+const config = require('../../config/environment');
+winston.level = config.logger.consoleLevel;
 
 module.exports = winston;
 

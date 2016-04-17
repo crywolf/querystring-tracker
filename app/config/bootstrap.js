@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../config/environment');
 const Q = require('q');
 const co = require('co');
 const redis = require('../models/redis');
@@ -11,5 +12,9 @@ module.exports = co(function *() {
     redis.init(),
     tracker.init()
   ]);
+
+  if (config.redis.flushDbOnBootsrap) {
+    yield redis.getClient().flushdb();
+  }
 
 });

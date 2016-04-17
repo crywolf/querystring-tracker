@@ -3,5 +3,9 @@
 // Development specific configuration
 // ==================================
 module.exports = {
-  port: 3000
+  port: 3000,
+
+  logger: {
+    consoleLevel: 'debug'
+  }
 };

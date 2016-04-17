@@ -16,7 +16,7 @@ const redisService = {
    * @returns {promise}
    */
   init () {
-    const client = new Redis(config.redis);
+    const client = new Redis(config.redis.options);
 
     client.on('connect', () => {
       log.info('Connected to Redis.');
