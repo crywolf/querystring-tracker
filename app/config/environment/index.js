@@ -14,7 +14,9 @@ const all = {
   port: process.env.PORT || 5000,
 
   // File to store parsed querystrings
-  trackerLogFile: path.join(path.normalize(`${__dirname}/../../..`), 'log/trackerLog.json'),
+  tracker: {
+    logFile: path.join(path.normalize(`${__dirname}/../../..`), 'log/trackerLog.json')
+  },
 
   redis: {
     options: {

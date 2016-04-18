@@ -5,10 +5,11 @@ const path = require('path');
 // Testing specific configuration
 // ==================================
 module.exports = {
-  port: 3000,
-
   // File to store parsed querystrings
-  trackerLogFile: path.join(path.normalize(`${__dirname}/../../..`), 'log/testingTrackerLog.json'),
+  tracker: {
+    deleteLogFileOnBootstrap: true,
+    logFile: path.join(path.normalize(`${__dirname}/../../..`), 'log/testingTrackerLog.json')
+  },
 
   redis: {
     flushDbOnBootsrap: true,

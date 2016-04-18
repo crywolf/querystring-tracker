@@ -16,7 +16,7 @@ const trackerService = {
    * @returns {promise}
    */
   init () {
-    const logStream = fs.createWriteStream(config.trackerLogFile, { flags: 'a' });
+    const logStream = fs.createWriteStream(config.tracker.logFile, { flags: 'a' });
     this._tracker = new Tracker(logStream);
     return new Q();
   },

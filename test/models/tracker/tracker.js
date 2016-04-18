@@ -14,11 +14,12 @@ const Q = require('q');
 
 
 describe('Tracker', () => {
-  fs.unlink(config.trackerLogFile, () => {});
 
   testUtil.before(mocha);
 
   beforeEach(function *() {
+    fs.truncateSync(config.tracker.logFile);
+
     const r = redis.getClient();
     yield r.set('count', 0);
   });
@@ -34,9 +35,9 @@ describe('Tracker', () => {
   it('should save querystring into the file', function *() {
     yield tracker.track(parsedQueryString);
 
-    return Q.nfcall(fs.stat, config.trackerLogFile)
+    return Q.nfcall(fs.stat, config.tracker.logFile)
       .then((stat) => {
-        assert(stat.isFile(), 'File was not created!');
+        assert(stat.isFile(), `Log file ${config.tracker.logFile} does not exist!`);
 
         const stringLength = JSON.stringify(parsedQueryString).length + 1; // extra comma
         assert.equal(stringLength, stat.size);
@@ -89,4 +90,5 @@ describe('Tracker', () => {
     const countAfter = yield r.get('count');
     assert.equal(parseInt(countAfter, 10), parseInt(countBefore, 10));
   });
+
 });

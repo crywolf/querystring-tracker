@@ -2,7 +2,8 @@
 
 process.env.NODE_ENV = 'testing';
 
-const koa = require('koa');
+const app = require('koa')();
+const request = require('co-supertest');
 
 const testUtil = {
 
@@ -17,26 +18,25 @@ const testUtil = {
   },
 
   /**
-   *
-   * @returns {*|exports}
+   * @returns {Server} Koa HTTP server
    */
   app () {
     if (this._app === null) {
-      this._app = koa();
+      this._app = app;
 
-      const api = require('../app/api');
-      this._app.use(api);
+      const routes = require('../app/config/routes');
+      this._app.use(routes.routes());
     }
 
-    return this._app;
+    return this._app.listen();
   },
 
-  // request () {
-  //   if (!this._initialized) {
-  //     throw new Error('Mocha should be initialized!');
-  //   }
-  //   return request(this.app());
-  // },
+  request () {
+    if (!this._initialized) {
+      throw new Error('Mocha should be initialized!');
+    }
+    return request(this.app());
+  },
 
   _initialize (mocha) {
     if (this._initialized) {
