@@ -19,10 +19,12 @@
     "url": "https://github.com/crywolf/querystring-tracker"
   },
   "dependencies": {
+    "etag": "^1.7.0",
     "ioredis": "^1.15.1",
     "koa": "^1.2.0",
     "koa-morgan": "^0.4.0",
     "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
     "q": "^1.4.1",
     "qs": "^6.1.0",
     "winston": "^2.2.0"
