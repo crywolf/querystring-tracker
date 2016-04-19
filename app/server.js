@@ -7,6 +7,8 @@ const log = require('./models/log').module('Server');
 module.exports.run = (app) => {
   const server = http.createServer(app.callback());
 
+  require('./sockets')(server);
+
   server.listen(config.port);
 
   server.on('listening', () => {

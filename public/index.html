@@ -2,10 +2,65 @@
 <html lang="en">
 <head>
   <title>Querystring tracker</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://localhost:3000');
+
+    socket.on('connect', function(data) {
+      setStatus('connected');
+      socket.emit('subscribe', { channel: 'log_channel' });
+    });
+
+    socket.on('reconnecting', function(data){
+      setStatus('reconnecting');
+    });
+
+    socket.on('message', function (data) {
+      addMessage(data);
+    });
+
+    function setStatus(msg) {
+      console.log('Connection Status : ' + msg);
+    }
+
+    function addMessage(data) {
+      if (data.count) {
+        console.log(typeof data.count);
+        $('#count tr td').html(data.count);
+      }
+      if (data.q) {
+        var date = new Date(data.timestamp);
+        var date_time = date.toLocaleString() + '.' + date.getMilliseconds();
+        var log_text = data.q;
+        $('#log').append('<tr><td>['+date_time+'] </td><td>'+log_text+'</td></tr>');
+        var rows = $('#log tr');
+        if (rows.length > 20) {
+          rows[0].remove();
+        }
+      }
+    };
+  </script>
 </head>
 <body>
   <h1>Querystring tracker</h1>
 
-  <a href="/get-log">Download log file</a>
+  <div><a href="/get-log">Download log file</a></div>
+
+  <table style="width: 100%; margin-top: 40px;">
+    <tr>
+      <td style="width: 80%; padding: 10px; border: 1px solid #000;" >
+          log:
+          <table id="log" style="margin-left: 50px; font-size: 0.8em;"></table>
+        </div>
+      </td>
+      <td style="width: 20%; padding: 10px; border: 1px solid #000;" >
+          count:
+          <table id="count" style="margin-left: 50px; font-size: 0.8em;"><tr><td></td></tr></table>
+        </div>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>
