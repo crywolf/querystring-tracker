@@ -1,6 +1,5 @@
 'use strict';
 
-
 const config = require('../../config/environment');
 const Jsoner = require('./jsoner.js');
 const fs = require('fs');
@@ -43,9 +42,10 @@ class LogServer {
           ctx.response.status = 304;
         } else {
           const fileSizeWithoutLastComma = stats.size - 1;
+          const fileEnd = (fileSizeWithoutLastComma - 1) > 0 ? (fileSizeWithoutLastComma - 1) : 0;
           ctx.body = fs.createReadStream(
             logFile,
-            { start: 0, end: (fileSizeWithoutLastComma - 1) }
+            { start: 0, end: fileEnd }
           ).pipe(jsoner);
         }
 
