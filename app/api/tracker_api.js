@@ -18,6 +18,7 @@ class TrackerApi extends ApiController {
     const parsedQueryString = qs.parse(ctx.querystring);
     return tracker.track(parsedQueryString);
   }
+
 }
 
 module.exports = TrackerApi;

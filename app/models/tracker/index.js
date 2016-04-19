@@ -28,6 +28,7 @@ const trackerService = {
   track (parsedQueryString) {
     return this._tracker.track(parsedQueryString);
   }
+
 };
 
 module.exports = trackerService;

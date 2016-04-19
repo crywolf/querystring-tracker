@@ -35,6 +35,7 @@ class Tracker {
     }
     return result;
   }
+
 }
 
 module.exports = Tracker;
