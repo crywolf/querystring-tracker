@@ -2,7 +2,7 @@
   "name": "querystring-tracker",
   "version": "0.0.1",
   "description": "Query strinq tracker for iBillBoard",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
     "node": "5.x"
   },
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "etag": "^1.7.0",
+    "forever": "^0.15.1",
     "ioredis": "^1.15.1",
     "koa": "^1.2.0",
     "koa-morgan": "^0.4.0",

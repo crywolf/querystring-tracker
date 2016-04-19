@@ -5,7 +5,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect();
 
     socket.on('connect', function(data) {
       setStatus('connected');
@@ -42,6 +42,7 @@
     };
   </script>
 </head>
+
 <body>
   <h1>Querystring tracker</h1>
 
@@ -61,6 +62,5 @@
       </td>
     </tr>
   </table>
-
 </body>
 </html>
