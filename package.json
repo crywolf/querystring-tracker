@@ -4,7 +4,7 @@
   "description": "Query strinq tracker for iBillBoard",
   "main": "app.js",
   "engines": {
-    "node": "5.x"
+    "node": ">=5.0.0"
   },
   "scripts": {
     "lint": "eslint .",

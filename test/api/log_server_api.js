@@ -14,7 +14,7 @@ describe('Log Server API', () => {
 
   before(function *() {
     // eslint-disable-next-line max-len
-    const querystring = 'pokus[key1]=cosi&lavor=true&cislo=235&foo=bar&baz=qux&baz=quux&corge&user[name][first]=Tobi&user[email]=tobi@learnboost.com&count=2';
+    const querystring = 'pokus[key1]=cosi&lavor=true&cislo=235&foo=bar&baz=qux&baz=quux&corge&user[name][first]=Tobi&user[email]=tobi@example.com&count=2';
     yield testUtil.request()
       .get(`/track?${querystring}`);
   });
@@ -26,7 +26,7 @@ describe('Log Server API', () => {
 
     assert.equal(response.status, 200);
     assert.equal(response.headers['content-type'], 'application/json; charset=utf-8');
-    assert.equal(response.headers['content-length'], '175');
+    assert.equal(response.headers['content-length'], '172');
     // eslint-disable-next-line max-len
     assert.equal(response.headers['content-disposition'], 'attachment; filename="testingTrackerLog.json"');
   });
