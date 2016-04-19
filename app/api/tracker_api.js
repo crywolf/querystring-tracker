@@ -15,7 +15,7 @@ class TrackerApi extends ApiController {
   track (ctx) {
     ctx.body = `Request at ${new Date()}`;
     ctx.body += '\n----------------------\n';
-    ctx.body += `querystring: ${JSON.stringify(qs.parse(ctx.querystring))}`;
+    ctx.body += `querystring: ${JSON.stringify(qs.parse(ctx.querystring))}\n`;
 
     // publish to Redis for realtime log statistics on the web page
     const querystringLogObject = { q: ctx.querystring, timestamp: Date.now() };
