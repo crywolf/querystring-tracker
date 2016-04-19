@@ -22,7 +22,12 @@ class Jsoner extends stream.Transform {
   }
 
   _flush (done) {
-    this.push(']');
+    if (this._flag === true) {
+      this.push(']');
+    } else {
+      this.push('[]');
+    }
+
     done();
   }
 

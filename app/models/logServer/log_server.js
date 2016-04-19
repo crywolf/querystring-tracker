@@ -28,7 +28,7 @@ class LogServer {
         ctx.response.status = 200;
         ctx.response.lastModified = stats.mtime;
         // we will remove traling comma (,) and wrap it into array ([orig. log file content])
-        const fileSize = stats.size + 1;
+        const fileSize = stats.size > 0 ? (stats.size + 1) : (stats.size + 2);
         ctx.response.length = fileSize;
         ctx.response.type = path.extname(logFile);
         ctx.response.attachment(path.basename(logFile));
